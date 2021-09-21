@@ -16,18 +16,20 @@ function App() {
   return (
     <Router>
       <Fragment>
-        <div className="App">
+        <div className="content">
             <Navbar />
-            <Switch>
-                <Route exact path='/'><Home/></Route>
-                <Route exact path='/index'><Home/></Route>
-                <Route exact path='/aboutus' ><AboutUs/></Route>
-                <Route exact path='/login' ><Login/></Route>
-                <Route exact path='/signup' ><SignUp/></Route>
-                <Route exact path='/courses' ><Courses/></Route>
-                <Route exact path='/tutors' ><Tutors/></Route>
-                <Route exact path='/*' ><NotFound/></Route>
-            </Switch>
+            <div className="page-content">
+                <Switch>
+                    <Route exact path='/'><Home/></Route>
+                    <Route exact path='/index'><Home/></Route>
+                    <Route exact path='/aboutus' ><AboutUs/></Route>
+                    <Route exact path='/login' ><Login/></Route>
+                    <Route exact path='/signup' ><SignUp/></Route>
+                    <Route exact path='/courses' ><Courses/></Route>
+                    <Route exact path='/tutors' ><Tutors/></Route>
+                    <Route exact path='/*' ><NotFound/></Route>
+                </Switch>
+            </div>
         </div>
       </Fragment>
     </Router>

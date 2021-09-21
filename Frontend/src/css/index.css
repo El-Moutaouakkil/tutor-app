@@ -40,7 +40,7 @@ nav {
 	display: flex !important;
 	flex-direction: row !important;
 	justify-content: space-between !important;
-	padding: 30px 40px 0px 40px;
+	padding: 30px 10% 0px 10%;
 }
 
 nav a {
@@ -49,6 +49,21 @@ nav a {
 
 img {
 	display: inline-block;
+}
+
+h2 {
+	font-family: 'Gluten', cursive;
+	/* font-family: 'Amatic SC', cursive; */
+}
+
+h1 {
+	font-family: 'Comfortaa', cursive;
+}
+
+/* General style */
+
+.page-content {
+	padding: 5% 10% 0 10%;
 }
 
 /* Navbar styling */
@@ -63,9 +78,14 @@ img {
 
 /* Home Page Styling */
 
+#home-header {
+	margin-top: 10%;
+}
+
 #img-cont {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-evenly;
 }
 
 #logo-cont {
@@ -87,7 +107,7 @@ img {
 	font-size: 1.8vw;
 }
 #circle-cont {
-	max-width: 50%;
+	max-width: 35%;
 }
 #circle-cont img {
 	margin-top: 5%;
