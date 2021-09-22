@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SignUpForm from '../components/SignUpForm'
 
 export class Home extends Component {
 	constructor(props) {
