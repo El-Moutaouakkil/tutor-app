@@ -114,8 +114,8 @@ h1 {
 	width: 140%;
 	height: 93%;
 	overflow: visible;
-	transform: translate(10%, 0);
-	animation: rotation 200s infinite linear;
+	/* transform: translate(10%, 0);
+	animation: rotation 200s infinite linear; */
 }
 
 /* About Us Page */
