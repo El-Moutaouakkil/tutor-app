@@ -1,7 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
+import AuthContext from '../context/auth-context/AuthContext';
+
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
+
+import Alert from '../components/Alert';
+import AlertContext from '../context/alert-context/AlertContext';
 
 const LoginFields = (props) => {
 	const authContext = useContext(AuthContext);

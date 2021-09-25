@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import Button from 'react-bootstrap/Button';
 import Semicircle from '../img/img2.png';
-import {Link} from 'react-router-dom';
 import LoginFields from '../components/LoginFields';
 
 export class Home extends Component {

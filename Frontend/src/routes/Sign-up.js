@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button';
 import Semicircle from '../img/img2.png';
 import {Link} from 'react-router-dom';
+import SignUpFields from '../components/SignUpFields';
 
 export class Home extends Component {
 	constructor(props) {
@@ -16,7 +17,7 @@ export class Home extends Component {
 					<div id='home-header'>
 						<h1>Rethinq</h1>
 						<h2>A free peer to peer tutoring service</h2>
-						<p>Sign Up Fields</p>
+						<SignUpFields />
 					</div>
 					<div id='circle-cont'>
 							<img src={Semicircle} alt='' />
