@@ -1,19 +1,40 @@
-import React, {Component} from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
+import AuthContext from '../context/auth-context/AuthContext';
 
-export class Home extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+const Tutors = (props) => {
 
-	render() {
-		return (
-			<div>
-                <h3>Tutors</h3>
-			</div>
-		);
-	}
+	const authContext = useContext(AuthContext);
+
+	const { isAuthenticated } = authContext;
+
+	const text = useRef('');
+
+	// useEffect(() => {
+	// 	if (filtered === null) {
+	// 		text.current.value = '';
+	// 	}
+	// });
+
+	const onChange = (e) => {
+		console.log("yay")
+	};
+
+	return (
+		<div>
+			<h1 className="display-1">Tutors</h1>
+			<form>
+					<input
+						ref={text}
+						type='text'
+						placeholder='Find Tutors...'
+						onChange={onChange}
+						class='form-control'
+					/>
+			</form>
+			<br />
+		</div>
+	);
 }
 
-export default Home;
+export default Tutors;

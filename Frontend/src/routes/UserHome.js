@@ -10,8 +10,22 @@ export class Home extends Component {
 	render() {
 		return (
 			<div>
-                <h3>UserHome</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, quos corporis nihil enim perspiciatis recusandae hic tempora, autem ab quod optio aspernatur sapiente rerum iure qui non quasi deleniti tempore!</p>
+				<div id="user-home-topbar">
+					<h1>John Doe</h1>
+				</div>
+				<hr />
+				<div id="user-home-tutors">
+					<h2>Current Tutors</h2>
+				</div>
+				<hr />
+				<div id="user-home-courses">	
+					<div className='flex-row'>
+						<h2>Current Courses</h2>
+						<Button>Add</Button>
+					</div>
+					<hr />
+					
+				</div>
 			</div>
 		);
 	}

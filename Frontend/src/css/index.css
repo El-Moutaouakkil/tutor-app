@@ -52,19 +52,23 @@ img {
 }
 
 h2 {
-	font-family: 'Gluten', cursive;
+	font-family: 'Comfortaa', cursive;
 }
 
 h1 {
 	font-family: 'Comfortaa', cursive;
 }
 
-Button {
+.flex-column Button {
 	margin-top: 3%;
 }
 
 .form-group {
 	margin-top: 2%;
+}
+
+.form-control {
+	margin-bottom: 2%;
 }
 
 .btn-block {
@@ -538,9 +542,11 @@ Button {
 	justify-content: space-between;
 }
 
-.myaccount-content-container {
+.flex-row {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .myaccount-right-container {
