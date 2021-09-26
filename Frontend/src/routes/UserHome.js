@@ -1,34 +1,52 @@
-import React, {Component} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
+import AuthContext from '../context/auth-context/AuthContext';
+import LinearProgress from '@mui/material/LinearProgress';
 
-export class Home extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+const UserHome = (props) => {
 
-	render() {
-		return (
-			<div>
-				<div id="user-home-topbar">
-					<h1>John Doe</h1>
-				</div>
-				<hr />
-				<div id="user-home-tutors">
-					<h2>Current Tutors</h2>
-				</div>
-				<hr />
-				<div id="user-home-courses">	
-					<div className='flex-row'>
-						<h2>Current Courses</h2>
-						<Button>Add</Button>
+	const authContext = useContext(AuthContext);
+	const {user, loading} = authContext;
+
+	useEffect(() => {
+		authContext.loadUser();
+	}, []);
+
+    const renderTutorBadge = () => {
+      if (user.isTutor) {
+        return <span class="badge bg-success">Tutor</span>;
+      } else {
+        return;
+      }
+    }
+
+	return (
+		<div>
+			{user !== null && !loading ? (
+				<div>
+					<div id="user-home-topbar">
+						<h1>{user.fname} {user.lname} {renderTutorBadge()}</h1> 
 					</div>
 					<hr />
-					
+					<div id="user-home-tutors">
+						<h2>Current Tutors</h2>
+					</div>
+					<hr />
+					<div id="user-home-courses">	
+						<div className='flex-row'>
+							<h2>Current Courses</h2>
+							<Button variant="dark">Add</Button>
+						</div>
+						<hr />
+						
+					</div>
 				</div>
-			</div>
-		);
-	}
+            ): (
+				<LinearProgress />
+			)}
+		</div>
+	);
 }
 
-export default Home;
+export default UserHome;

@@ -13,7 +13,9 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT,
-	CLEAR_ERRORS
+	CLEAR_ERRORS,
+	GET_ONE_USER,
+	CONTACT_ERROR
 } from '../types';
 
 const AuthState = props => {
@@ -87,6 +89,24 @@ const AuthState = props => {
 			});
 		}
 	};
+
+		// Fetch one Recipe
+	// Will also select one recipe
+	const getOneUser = async (id) => {
+		try {
+			const res = await axios.get('/api/users/' + id);
+			dispatch({
+				type: GET_ONE_USER,
+				payload: res.data
+			});
+		} catch (err) {
+			dispatch({
+				type: CONTACT_ERROR,
+				payload: err.response.msg
+			});
+		}
+	};
+
 	// Logout User
 	const logout = () => dispatch({type: LOGOUT});
 
@@ -105,7 +125,8 @@ const AuthState = props => {
 				login,
 				logout,
 				clearErrors,
-				loadUser
+				loadUser,
+				getOneUser
 			}}
 		>
 			{props.children}

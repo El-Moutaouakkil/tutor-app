@@ -10,6 +10,28 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	fname: {
+		type: String,
+		required: true
+	},
+	lname: {
+		type: String,
+		required: true
+	},
+	isTutor: {
+		type: Boolean,
+		required: true
+	},
+	phonenum: {
+		type: Number,
+		unique: true
+	},
+	courses: {
+		type: [ {course: String, semester: String} ]
+	},
+	tutors: {
+		type: [ {email: String} ]
+	},
 	date: {
 		type: Date,
 		default: Date.now

@@ -59,6 +59,11 @@ h1 {
 	font-family: 'Comfortaa', cursive;
 }
 
+#user-home-topbar {
+	display: flex !important;
+	flex-direction: row !important;
+}
+
 .flex-column Button {
 	margin-top: 3%;
 }
