@@ -1,7 +1,8 @@
 import React, {useReducer} from 'react';
+import axios from 'axios';
+
 import AuthReducer from './AuthReducer';
 import AuthContext from './AuthContext';
-import axios from 'axios';
 import setAuthToken from '../../utils/setAuthTokens';
 
 import {
@@ -12,8 +13,7 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT,
-	CLEAR_ERRORS,
-	ADD_USER_RESTRICTIONS
+	CLEAR_ERRORS
 } from '../types';
 
 const AuthState = props => {
@@ -93,64 +93,6 @@ const AuthState = props => {
 	// Clear Errors
 	const clearErrors = () => dispatch({type: CLEAR_ERRORS});
 
-	const addDietRestrictions = async (userID, dietRestrictions) => {
-		const config = {
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		};
-		try {
-			const res = await axios.post(
-				'/api/users/restrictions/' + userID,
-				dietRestrictions,
-				config
-			);
-			console.log(res.data);
-			dispatch({
-				type: ADD_USER_RESTRICTIONS,
-				payload: res.data
-			});
-
-			loadUser();
-		} catch (error) {
-			console.log(error);
-			// dispatch({
-			// 	type: REGISTER_FAIL,
-			// 	payload: error.response.data.msg
-			// });
-		}
-	};
-
-	// TODO
-
-	const removeDietRestriction = async (userID, dietRestrictions) => {
-		const config = {
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		};
-		try {
-			const res = await axios.post(
-				'/api/users/restrictions/del' + userID,
-				dietRestrictions,
-				config
-			);
-			console.log(res.data);
-			dispatch({
-				type: ADD_USER_RESTRICTIONS,
-				payload: res.data
-			});
-
-			loadUser();
-		} catch (error) {
-			console.log(error);
-			// dispatch({
-			// 	type: REGISTER_FAIL,
-			// 	payload: error.response.data.msg
-			// });
-		}
-	};
-
 	return (
 		<AuthContext.Provider
 			value={{
@@ -163,8 +105,7 @@ const AuthState = props => {
 				login,
 				logout,
 				clearErrors,
-				loadUser,
-				addDietRestrictions
+				loadUser
 			}}
 		>
 			{props.children}

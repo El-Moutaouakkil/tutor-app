@@ -63,7 +63,8 @@ const LoginFields = (props) => {
 			<div id='sign-up-form'>
 				<Alert />
 				<Form onSubmit={handleSubmit}>
-					<Form.Group controlId='email'>
+					
+					<Form.Group controlId='email' className='form-group'>
 						<Form.Label>Email address</Form.Label>
 						<Form.Control
 							type='email'
@@ -74,7 +75,7 @@ const LoginFields = (props) => {
 						/>
 					</Form.Group>
 
-					<Form.Group controlId='password'>
+					<Form.Group controlId='password' className='form-group'>
 						<Form.Label>Password</Form.Label>
 						<Form.Control
 							type='password'
@@ -84,6 +85,7 @@ const LoginFields = (props) => {
 							required
 						/>
 					</Form.Group>
+
 					<Button variant='outline-dark' type='submit'>
 						Log In!
 					</Button>

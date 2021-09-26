@@ -16,13 +16,12 @@ const SignUpFields = (props) => {
 
 	const [ user, setUser ] = useState({
 		email: '',
-		username: '',
 		password: '',
 		confirmPassword: ''
 	});
 
-	const { email, username, password, confirmPassword } = user;
-	const { register, error, clearErrors, isAuthenticated } = authContext;
+	const { email, password, confirmPassword } = user;
+	const { register, error, isAuthenticated } = authContext;
 
 	useEffect(
 		() => {
@@ -46,41 +45,30 @@ const SignUpFields = (props) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (username === '' || email === '' || password === '') {
+		if (email === '' || password === '') {
 			setAlert('Please enter all fields', 'danger');
 		} else if (password !== confirmPassword) {
 			setAlert('Passwords do not match', 'danger');
 		} else {
-			register({ email, username, password });
+			register({ email, password });
 		}
 	};
 	return (
 		<div>
 			<div id='sign-up-form'>
 				<Form onSubmit={handleSubmit}>
-					<Form.Group controlId='email'>
+					<Form.Group controlId='email' className='form-group'>
 						<Form.Label>Email address</Form.Label>
 						<Form.Control
 							type='email'
-							placeholder='ramsey@me.com'
+							placeholder='roary@fiu.edu'
 							value={user.email}
 							onChange={handleChange}
 							required
 						/>
 					</Form.Group>
 
-					<Form.Group controlId='username'>
-						<Form.Label>Username</Form.Label>
-						<Form.Control
-							type='text'
-							placeholder='Username'
-							value={user.username}
-							onChange={handleChange}
-							required
-						/>
-					</Form.Group>
-
-					<Form.Group controlId='password'>
+					<Form.Group controlId='password' className='form-group'>
 						<Form.Label>Password</Form.Label>
 						<Form.Control
 							type='password'
@@ -93,11 +81,11 @@ const SignUpFields = (props) => {
 						/>
 					</Form.Group>
 
-					<Form.Group controlId='confirmPassword'>
+					<Form.Group controlId='confirmPassword' className='form-group'>
 						<Form.Label>Confirm Password</Form.Label>
 						<Form.Control
 							type='password'
-							placeholder='Connfirm password'
+							placeholder='Confirm password'
 							required
 							value={user.confirmPassword}
 							onChange={handleChange}

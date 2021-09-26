@@ -1,5 +1,3 @@
-export const SEARCH_RECIPES = 'SEARCH_RECIPES';
-
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const USER_LOADED = 'USER_LOADED';
@@ -12,7 +10,5 @@ export const SET_LOADING = 'SET_LOADING';
 
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+
 export const CONTACT_ERROR = 'CONTACT_ERROR';
-export const GET_ONE_RECIPE = 'GET_ONE_RECIPE';
-export const GET_MY_RECIPES = 'GET_MY_RECIPES';
-export const ADD_USER_RESTRICTIONS = 'ADD_USER_RESTRICTIONS';
