@@ -27,7 +27,7 @@ const LoginFields = (props) => {
 	useEffect(
 		() => {
 			if (isAuthenticated) {
-				history.push('/recipes');
+				history.push('/userhome');
 			}
 
 			if (error === 'Invalid Credentials') {

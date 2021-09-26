@@ -26,7 +26,7 @@ const SignUpFields = (props) => {
 	useEffect(
 		() => {
 			if (isAuthenticated) {
-				history.push('/recipes');
+				history.push('/userhome');
 			}
 
 			if (error === 'User already exists') {

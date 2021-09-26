@@ -1,0 +1,4 @@
+{
+	"mongoURI": "mongodb+srv://mern:mongodb@tutorapp.h6rpg.mongodb.net/tutorapp?retryWrites=true&w=majority",
+	"jwtSecret": "wannacookie"
+}

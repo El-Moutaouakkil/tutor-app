@@ -1,10 +1,12 @@
+const mongoose = require('mongoose')
+const config = require('config')
 
-import mongoose from 'mongoose'
+const db = config.get('mongoURI')
 
 const connectDB = async () => {
     try {
         //database Name
-        const con = await mongoose.connect(`mongodb+srv://mern:mongodb@tutorapp.h6rpg.mongodb.net/tutorapp?retryWrites=true&w=majority`, { 
+        const con = await mongoose.connect(db, { 
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -15,4 +17,4 @@ const connectDB = async () => {
     }
 }
 
-export default connectDB
+module.exports = connectDB

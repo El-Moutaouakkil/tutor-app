@@ -7,6 +7,7 @@ import '../css/index.css';
 
 // Components
 import Home from '../routes/Home'
+import UserHome from '../routes/UserHome'
 import AboutUs from '../routes/Aboutus'
 import Login from '../routes/Login'
 import SignUp from '../routes/Sign-up'
@@ -39,6 +40,7 @@ function App() {
                     <Switch>
                         <Route exact path='/'><Home/></Route>
                         <Route exact path='/index'><Home/></Route>
+                        <Route exact path='/userhome'><UserHome/></Route>
                         <Route exact path='/aboutus' ><AboutUs/></Route>
                         <Route exact path='/login' ><Login/></Route>
                         <Route exact path='/signup' ><SignUp/></Route>
