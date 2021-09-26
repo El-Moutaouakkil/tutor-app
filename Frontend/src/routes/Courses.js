@@ -1,19 +1,41 @@
-import React, {Component} from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import AuthContext from '../context/auth-context/AuthContext';
 
-export class Home extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+const Courses = (props) => {
 
-	render() {
-		return (
-			<div>
-                <h3>Courses</h3>
-			</div>
-		);
-	}
+	const authContext = useContext(AuthContext);
+
+	const { isAuthenticated } = authContext;
+
+	const text = useRef('');
+
+	// useEffect(() => {
+	// 	if (filtered === null) {
+	// 		text.current.value = '';
+	// 	}
+	// });
+
+	const onChange = (e) => {
+		console.log("yay")
+	};
+
+	return (
+		<div>
+			<h1 className="display-1">Courses</h1>
+			<form>
+					<input
+						ref={text}
+						type='text'
+						placeholder='Find Courses...'
+						onChange={onChange}
+						class='form-control'
+					/>
+			</form>
+			<br />
+		</div>
+	);
 }
 
-export default Home;
+export default Courses;

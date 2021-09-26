@@ -15,6 +15,7 @@ import Courses from '../routes/Courses'
 import Tutors from '../routes/Tutors'
 import NotFound from '../routes/NotFound'
 import Navbar from '../components/Navbar';
+import PrivateRoute from '../routes/PrivateRoute';
 
 // State and Token
 import AuthState from '../context/auth-context/AuthState';
@@ -40,7 +41,7 @@ function App() {
                     <Switch>
                         <Route exact path='/'><Home/></Route>
                         <Route exact path='/index'><Home/></Route>
-                        <Route exact path='/userhome'><UserHome/></Route>
+                        <PrivateRoute path='/userhome' component={UserHome}/>
                         <Route exact path='/aboutus' ><AboutUs/></Route>
                         <Route exact path='/login' ><Login/></Route>
                         <Route exact path='/signup' ><SignUp/></Route>
