@@ -16,17 +16,14 @@ const Navbar = () => {
 			<div>
 				<nav className='nav-logged-in'>
 					<div id='nav-left'>
-						<Link to='/index'>
-							<a>Home</a>
+						<Link to='/userhome'>
+							<a>My Account</a>
 						</Link>
 						<Link to='/courses'>
 							<a href=''>Courses</a>
 						</Link>
 						<Link to='/tutors'>
 							<a href=''>Tutors</a>
-						</Link>
-						<Link to='/userhome'>
-							<a>My Account</a>
 						</Link>
 					</div>
 					<div id='nav-right'>

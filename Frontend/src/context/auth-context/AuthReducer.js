@@ -6,7 +6,9 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT,
-	CLEAR_ERRORS
+	CLEAR_ERRORS,
+	CONTACT_ERROR,
+	GET_ONE_USER
 } from '../types';
 
 export default (state, action) => {
@@ -34,6 +36,7 @@ export default (state, action) => {
 				error: action.payload
 			};
 		case CLEAR_ERRORS:
+		case CONTACT_ERROR:
 			return {
 				...state,
 				error: null
@@ -44,6 +47,12 @@ export default (state, action) => {
 				isAuthenticated: true,
 				loading: false,
 				user: action.payload
+			};
+		case GET_ONE_USER:
+			return {
+				...state,
+				...action.payload,
+				loading: false
 			};
 		default:
 			return state;

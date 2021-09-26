@@ -17,10 +17,14 @@ const SignUpFields = (props) => {
 	const [ user, setUser ] = useState({
 		email: '',
 		password: '',
-		confirmPassword: ''
+		confirmPassword: '',
+		fname: '',
+		lname: '',
+		phonenum: '',
+		isTutor: 'false'
 	});
 
-	const { email, password, confirmPassword } = user;
+	const { email, password, confirmPassword, fname, lname, phonenum, isTutor } = user;
 	const { register, error, isAuthenticated } = authContext;
 
 	useEffect(
@@ -30,6 +34,7 @@ const SignUpFields = (props) => {
 			}
 
 			if (error === 'User already exists') {
+				setAlert('User already exists', 'danger');
 			}
 		},
 		[ error, isAuthenticated, props.history ]
@@ -45,17 +50,19 @@ const SignUpFields = (props) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (email === '' || password === '') {
+		if (email === '' || password === '' || fname === '' || lname === '' || phonenum === '') {
 			setAlert('Please enter all fields', 'danger');
 		} else if (password !== confirmPassword) {
 			setAlert('Passwords do not match', 'danger');
 		} else {
-			register({ email, password });
+			console.log(isTutor)
+			register({ email, password, fname, lname, phonenum, isTutor });
 		}
 	};
 	return (
 		<div>
 			<div id='sign-up-form'>
+				<Alert />
 				<Form onSubmit={handleSubmit}>
 					<Form.Group controlId='email' className='form-group'>
 						<Form.Label>Email address</Form.Label>
@@ -63,6 +70,36 @@ const SignUpFields = (props) => {
 							type='email'
 							placeholder='roary@fiu.edu'
 							value={user.email}
+							onChange={handleChange}
+							required
+						/>
+					</Form.Group>
+
+					<Form.Group controlId='fname' className='form-group'>
+						<Form.Label>First Name</Form.Label>
+						<Form.Control
+							placeholder='Tom'
+							value={user.fname}
+							onChange={handleChange}
+							required
+						/>
+					</Form.Group>
+
+					<Form.Group controlId='lname' className='form-group'>
+						<Form.Label>Last Name</Form.Label>
+						<Form.Control
+							placeholder='Ford'
+							value={user.lname}
+							onChange={handleChange}
+							required
+						/>
+					</Form.Group>
+
+					<Form.Group controlId='phonenum' className='form-group'>
+						<Form.Label>Phone Number</Form.Label>
+						<Form.Control
+							placeholder='7862418690'
+							value={user.phonenum}
 							onChange={handleChange}
 							required
 						/>
@@ -95,7 +132,6 @@ const SignUpFields = (props) => {
 					<Button variant='outline-dark' type='submit'>
 						Submit
 					</Button>
-					<Alert />
 				</Form>
 			</div>
 		</div>

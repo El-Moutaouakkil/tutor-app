@@ -6,6 +6,35 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
+
+// @route GET api/users
+// Get users
+
+router.get('/',async (req, res, next) => {
+	try{
+		const users = await User.find();
+		res.json(users);
+	} catch (error){
+		console.log(error)
+		res.status(500).send('Server Error')
+	}
+
+});
+
+// @route GET api/users/tutors
+// Get Tutors
+
+router.get('/tutors',async (req, res, next) => {
+	try{
+		const users = await User.find({isTutor: true}).exec();
+		res.json(users);
+	} catch (error){
+		console.log(error)
+		res.status(500).send('Server Error')
+	}
+
+});
+
 // @route POST api/users
 // Create a user
 // Public
@@ -18,7 +47,11 @@ router.post(
 		check(
 			'password',
 			'Please enter a password with 6 or more characters'
-		).isLength({min: 6})
+		).isLength({min: 6}),
+		check(
+			'phonenum',
+			'Please enter a valid phone number'
+		).isLength({min: 10})
 	],
 	async (req, res, next) => {
 		const errors = validationResult(req);
@@ -29,7 +62,7 @@ router.post(
 		}
 
 		// Extract the actual data from the body
-		const {email, password} = req.body;
+		const {email, password, fname, lname, phonenum, isTutor} = req.body;
 
 		// Check and see if user already exists in the database
 		try {
@@ -44,7 +77,11 @@ router.post(
 			// Creating a new User
 			user = new User({
 				email,
-				password
+				password,
+				fname,
+				lname,
+				phonenum,
+				isTutor
 			});
 
 			const salt = await bcrypt.genSalt(10);

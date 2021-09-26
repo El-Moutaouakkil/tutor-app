@@ -18,10 +18,13 @@ const LoginFields = (props) => {
 
 	const [ user, setUser ] = useState({
 		email: '',
-		password: ''
+		password: '',
+		fname: '',
+		lname: '',
+		phonenum: ''
 	});
 
-	const { email, password } = user;
+	const { email, password, fname, lname, phonenum } = user;
 	const { login, error, clearErrors, isAuthenticated } = authContext;
 
 	useEffect(

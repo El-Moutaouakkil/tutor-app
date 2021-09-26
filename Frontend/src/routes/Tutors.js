@@ -1,38 +1,42 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import AuthContext from '../context/auth-context/AuthContext';
+import UserContext from '../context/user-context/UserContext';
+import LinearProgress from '@mui/material/LinearProgress';
+import TutorCard from '../components/Tutors/TutorCard'
 
 const Tutors = (props) => {
 
-	const authContext = useContext(AuthContext);
+	const userContext = useContext(UserContext);
 
-	const { isAuthenticated } = authContext;
+	const { users,loading, getTutors } = userContext;
 
-	const text = useRef('');
+	useEffect(() => {
+		// Will load all recipes into the context
+		getTutors();
+	}, []);
 
-	// useEffect(() => {
-	// 	if (filtered === null) {
-	// 		text.current.value = '';
-	// 	}
-	// });
-
-	const onChange = (e) => {
-		console.log("yay")
-	};
 
 	return (
 		<div>
 			<h1 className="display-1">Tutors</h1>
 			<form>
 					<input
-						ref={text}
 						type='text'
 						placeholder='Find Tutors...'
-						onChange={onChange}
 						class='form-control'
 					/>
 			</form>
 			<br />
+				{users !== [] && !loading ? (
+					users.map((user) => (
+						<div className='recipe-card-container'>
+							<TutorCard tutorContent={user} />
+						</div>
+					))
+				) : (
+					<LinearProgress />
+				)}
 		</div>
 	);
 }
