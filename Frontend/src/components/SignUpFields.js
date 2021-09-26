@@ -34,6 +34,7 @@ const SignUpFields = (props) => {
 			}
 
 			if (error === 'User already exists') {
+				setAlert('User already exists', 'danger');
 			}
 		},
 		[ error, isAuthenticated, props.history ]
@@ -61,6 +62,7 @@ const SignUpFields = (props) => {
 	return (
 		<div>
 			<div id='sign-up-form'>
+				<Alert />
 				<Form onSubmit={handleSubmit}>
 					<Form.Group controlId='email' className='form-group'>
 						<Form.Label>Email address</Form.Label>
@@ -130,7 +132,6 @@ const SignUpFields = (props) => {
 					<Button variant='outline-dark' type='submit'>
 						Submit
 					</Button>
-					<Alert />
 				</Form>
 			</div>
 		</div>

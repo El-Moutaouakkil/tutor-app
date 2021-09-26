@@ -13,3 +13,6 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const GET_ONE_USER = 'GET_ONE_USER';
 
 export const CONTACT_ERROR = 'CONTACT_ERROR';
+
+export const DELETE_USER = 'DELETE_USER'
+export const GET_USERS = 'GET_USERS'

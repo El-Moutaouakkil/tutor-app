@@ -6,6 +6,35 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
+
+// @route GET api/users
+// Get users
+
+router.get('/',async (req, res, next) => {
+	try{
+		const users = await User.find();
+		res.json(users);
+	} catch (error){
+		console.log(error)
+		res.status(500).send('Server Error')
+	}
+
+});
+
+// @route GET api/users/tutors
+// Get Tutors
+
+router.get('/tutors',async (req, res, next) => {
+	try{
+		const users = await User.find({isTutor: true}).exec();
+		res.json(users);
+	} catch (error){
+		console.log(error)
+		res.status(500).send('Server Error')
+	}
+
+});
+
 // @route POST api/users
 // Create a user
 // Public
