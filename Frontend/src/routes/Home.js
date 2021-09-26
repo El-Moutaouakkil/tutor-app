@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button';
 import Semicircle from '../img/img2.png';
+import {Link} from 'react-router-dom';
 
 export class Home extends Component {
+	
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -12,10 +14,13 @@ export class Home extends Component {
 		return (
 			<div>
 				<div id='img-cont'>
-					<div id='home-header'>
-						<h1>Rethinq</h1>
-						<h2>A free peer to peer tutoring service</h2>
-						<Button variant='outline-dark'>Learn More!</Button>
+					<div >
+						<h1 id='home-header'>Rethinq</h1>
+						<p id='sub-header'>A free peer to peer tutoring service</p>
+						<div className='flex-column'>
+							<Link to='/login'><Button variant='light' className='btn-block'>Login</Button></Link>
+							<Link to='/signup'><Button variant='light' className='btn-block'>Register</Button></Link>
+						</div>
 					</div>
 					<div id='circle-cont'>
 							<img src={Semicircle} alt='' />

@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import Button from 'react-bootstrap/Button';
+import Semicircle from '../img/img2.png';
+import {Link} from 'react-router-dom';
+import SignUpFields from '../components/SignUpFields';
 
 export class Home extends Component {
 	constructor(props) {
@@ -9,7 +13,16 @@ export class Home extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Sign Up</h1>
+				<div id='img-cont'>
+					<div>
+						<h1 id='home-header'>Rethinq</h1>
+						<p id='sub-header'>A free peer to peer tutoring service</p>
+						<SignUpFields />
+					</div>
+					<div id='circle-cont'>
+							<img src={Semicircle} alt='' />
+					</div>
+				</div>
 			</div>
 		);
 	}

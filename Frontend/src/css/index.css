@@ -40,7 +40,7 @@ nav {
 	display: flex !important;
 	flex-direction: row !important;
 	justify-content: space-between !important;
-	padding: 30px 10% 0px 10%;
+	padding: 30px 15% 0px 15%;
 }
 
 nav a {
@@ -53,23 +53,31 @@ img {
 
 h2 {
 	font-family: 'Gluten', cursive;
-	/* font-family: 'Amatic SC', cursive; */
 }
 
 h1 {
 	font-family: 'Comfortaa', cursive;
 }
 
+Button {
+	margin-top: 3%;
+}
+
+.form-group {
+	margin-top: 2%;
+}
+
+.btn-block {
+	width: 100%;
+}
+
 /* General style */
 
 .page-content {
-	padding: 5% 10% 0 10%;
+	padding: 5% 15% 0 15%;
 }
 
 /* Navbar styling */
-
-.nav-not-logged-in {
-}
 
 .nav-logged-in img {
 	margin-top: -10%;
@@ -80,12 +88,18 @@ h1 {
 
 #home-header {
 	margin-top: 10%;
+	font-size: 4em;
+}
+
+#sub-header {
+	font-size: 2em;
+	font-weight: 200;
 }
 
 #img-cont {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-around;
 }
 
 #logo-cont {
@@ -111,11 +125,10 @@ h1 {
 }
 #circle-cont img {
 	margin-top: 5%;
-	width: 140%;
-	height: 93%;
+	height: 60vh;
 	overflow: visible;
-	transform: translate(10%, 0);
-	animation: rotation 200s infinite linear;
+	/* transform: translate(10%, 0);
+	animation: rotation 200s infinite linear; */
 }
 
 /* About Us Page */
@@ -699,6 +712,12 @@ h1 {
 .flex-row-between {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 }
 /* My Recipes */
