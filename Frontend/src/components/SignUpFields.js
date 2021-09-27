@@ -21,10 +21,10 @@ const SignUpFields = (props) => {
 		fname: '',
 		lname: '',
 		phonenum: '',
-		isTutor: 'false'
+		userType: '1'
 	});
 
-	const { email, password, confirmPassword, fname, lname, phonenum, isTutor } = user;
+	const { email, password, confirmPassword, fname, lname, phonenum, userType } = user;
 	const { register, error, isAuthenticated } = authContext;
 
 	useEffect(
@@ -55,8 +55,7 @@ const SignUpFields = (props) => {
 		} else if (password !== confirmPassword) {
 			setAlert('Passwords do not match', 'danger');
 		} else {
-			console.log(isTutor)
-			register({ email, password, fname, lname, phonenum, isTutor });
+			register({ email, password, fname, lname, phonenum, userType });
 		}
 	};
 	return (

@@ -1,17 +1,20 @@
 import {
-	GET_ONE_USER,
-    DELETE_USER,
-    GET_USERS,
+	GET_ONE_COURSE,
+    GET_COURSES,
+    GET_COURSES_BY_MAJOR,
+    CREATE_COURSE,
+    DELETE_COURSE,
     CONTACT_ERROR,
 	CLEAR_ERRORS
 } from '../types';
 
 export default (state, action) => {
 	switch (action.type) {
-		case GET_USERS:
+		case GET_COURSES:
+        case GET_COURSES_BY_MAJOR:
 			return {
 				...state,
-				users: action.payload,
+				courses: action.payload,
 				loading: false
 			};
 		case CLEAR_ERRORS:
@@ -20,10 +23,10 @@ export default (state, action) => {
 				...state,
 				error: null
 			};
-		case GET_ONE_USER:
+		case GET_ONE_COURSE:
 			return {
 				...state,
-				user: action.payload,
+				course: action.payload,
 				loading: false
 			};
 		default:

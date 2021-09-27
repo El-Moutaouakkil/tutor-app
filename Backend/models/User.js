@@ -18,8 +18,8 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	isTutor: {
-		type: Boolean,
+	userType:{
+		type: Number,
 		required: true
 	},
 	phonenum: {
@@ -32,6 +32,7 @@ const UserSchema = new mongoose.Schema({
 	tutors: {
 		type: [ {email: String} ]
 	},
+
 	date: {
 		type: Date,
 		default: Date.now

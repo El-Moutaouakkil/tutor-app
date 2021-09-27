@@ -1,37 +1,39 @@
 import React, {useReducer} from 'react';
 import axios from 'axios';
 
-import UserReducer from './UserReducer';
-import UserContext from './UserContext';
+import CourseReducer from './CourseReducer';
+import CourseContext from './CourseContext';
 
 import {
-	GET_ONE_USER,
-    DELETE_USER,
-    GET_USERS,
+	GET_ONE_COURSE,
+    GET_COURSES,
+    GET_COURSES_BY_MAJOR,
+    CREATE_COURSE,
+    DELETE_COURSE,
     CONTACT_ERROR,
 	CLEAR_ERRORS
 } from '../types';
 
-const UserState = props => {
+const CourseState = props => {
 	const InitialState = {
 		loading: true,
-		users: [],
-        user: null,
+		courses: [],
+        course: null,
         filtered: null,
 		error: null
 	};
 
-	const [state, dispatch] = useReducer(UserReducer, InitialState);
+	const [state, dispatch] = useReducer(CourseReducer, InitialState);
 
-	const deleteUser = (id) => {
-		dispatch({ type: DELETE_USER, payload: id });
+	const deleteCourse = (id) => {
+		dispatch({ type: DELETE_COURSE, payload: id });
 	};
 
-    const getUsers = async () => {
+    const getCourse = async () => {
 		try {
-			const res = await axios.get('/api/users');
+			const res = await axios.get('/api/courses');
 			dispatch({
-				type: GET_USERS,
+				type: GET_COURSES,
 				payload: res.data
 			});
 		} catch (err) {
@@ -42,11 +44,11 @@ const UserState = props => {
 		}
 	};
 
-	const getTutors = async () => {
+	const getCourseByMajor = async (id) => {
 		try {
-			const res = await axios.get('/api/users/tutors');
+			const res = await axios.get('/api/courses/major' + id);
 			dispatch({
-				type: GET_USERS,
+				type: GET_COURSES_BY_MAJOR,
 				payload: res.data
 			});
 		} catch (err) {
@@ -58,11 +60,11 @@ const UserState = props => {
 	};
 
 
-	const getOneUser = async (id) => {
+	const getOneCourse = async (id) => {
 		try {
-			const res = await axios.get('/api/users/id/' + id);
+			const res = await axios.get('/api/course/id/' + id);
 			dispatch({
-				type: GET_ONE_USER,
+				type: GET_ONE_COURSE,
 				payload: res.data
 			});
 		} catch (err) {
@@ -77,7 +79,7 @@ const UserState = props => {
 	const clearErrors = () => dispatch({type: CLEAR_ERRORS});
 
 	return (
-		<UserContext.Provider
+		<CourseContext.Provider
 			value={{
 				loading: state.loading,
 				user: state.user,
@@ -85,15 +87,15 @@ const UserState = props => {
                 users: state.users,
                 filtered: state.filtered,
 				clearErrors,
-                deleteUser,
-                getUsers,
-				getOneUser,
-				getTutors
+                deleteCourse,
+                getCourse,
+				getCourseByMajor,
+				getOneCourse
 			}}
 		>
 			{props.children}
-		</UserContext.Provider>
+		</CourseContext.Provider>
 	);
 };
 
-export default UserState;
+export default CourseState;

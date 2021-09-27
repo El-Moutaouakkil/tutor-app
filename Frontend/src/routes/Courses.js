@@ -30,7 +30,7 @@ const Courses = (props) => {
 						type='text'
 						placeholder='Find Courses...'
 						onChange={onChange}
-						class='form-control'
+						className='form-control search-field'
 					/>
 			</form>
 			<br />

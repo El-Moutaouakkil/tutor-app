@@ -1,35 +1,44 @@
 import React, { useEffect, useState, useContext } from 'react';
-import AuthContext from '../context/auth-context/AuthContext';
+import UserContext from '../context/user-context/UserContext';
 import Button from 'react-bootstrap/Button';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import LinearProgress from '@mui/material/LinearProgress';
+import { BsFillEnvelopeFill } from "react-icons/bs";
+import { AiOutlinePhone } from "react-icons/ai";
 
 const TutorProfile = (props) => {
 
-	const authContext = useContext(AuthContext);
-	const { user, getOneUser, loading } = authContext;
+	const userContext = useContext(UserContext);
+	const { user, getOneUser, loading } = userContext;
+
+    const params = useParams()
 
     useEffect(() => {
-		getOneUser(props.match.params.id);
+		getOneUser(params.id);
 	}, []);
 
-    const renderTutorBadge = () => {
-        if (user.isTutor) {
-          return <span class="badge bg-success">Tutor</span>;
-        } else {
-          return;
-        }
-      }
-  
+    const renderBadge = () => {
+		if(user.userType == 3){
+			return <span className="badge bg-warning">Admin</span>;
+		}
+		else if (user.userType == 2) {
+			return <span className="badge bg-success">Tutor</span>;
+		} 
+		else {
+			return;
+		}
+    }
+
+    console.log(user)
     return (
         <div>
             {user !== null && !loading ? (
                 <div>
-                    <div id="tutor-home-topbar">
-                        <h1>{user.fname} {user.lname} {renderTutorBadge()}</h1> 
+                    <div id="user-home-topbar">
+                        <h1>{user.fname} {user.lname} {renderBadge()}</h1> 
                         <div id="profile-contact">
-                            <p>Email</p>
-                            <p>Phone</p>
+                            <div className="d-flex flex-row align-items-center"><BsFillEnvelopeFill/><p>&nbsp; {user.email}</p></div>
+                            <div className="d-flex flex-row align-items-center"><AiOutlinePhone/><p>&nbsp; {user.phonenum}</p></div>
                         </div>
                     </div>
                     <hr />
