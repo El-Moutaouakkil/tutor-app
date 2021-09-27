@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import Button from 'react-bootstrap/Button';
-import Semicircle from '../img/img2.png';
+import Semicircle from '../img/img2.jpeg';
 import {Link} from 'react-router-dom';
 import AuthContext from '../context/auth-context/AuthContext';
 

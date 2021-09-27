@@ -16,3 +16,9 @@ export const CONTACT_ERROR = 'CONTACT_ERROR';
 
 export const DELETE_USER = 'DELETE_USER'
 export const GET_USERS = 'GET_USERS'
+
+export const GET_ONE_COURSE = 'GET_ONE_COURSE'
+export const GET_COURSES = 'GET_COURSES' 
+export const GET_COURSES_BY_MAJOR = 'GET_COURSES_BY_MAJOR' 
+export const CREATE_COURSE = 'CREATE_COURSE' 
+export const DELETE_COURSE = 'DELETE_COURSE'

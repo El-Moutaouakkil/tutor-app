@@ -59,9 +59,14 @@ h1 {
 	font-family: 'Comfortaa', cursive;
 }
 
+h3 {
+	font-family: 'Comfortaa', cursive;
+}
+
 #user-home-topbar {
 	display: flex !important;
 	flex-direction: row !important;
+	justify-content: space-between !important;
 }
 
 .flex-column Button {
@@ -91,6 +96,10 @@ h1 {
 .nav-logged-in img {
 	margin-top: -10%;
 	max-width: 10vw;
+}
+
+.search-field {
+	border-radius: 25px;
 }
 
 /* Home Page Styling */
@@ -290,8 +299,20 @@ h1 {
 .ingredients-logo {
 	margin-left: 14%;
 }
+.tutor-card {
+	padding: 2em;
+	margin-top: 2em;
+	box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.4);
+}
 
-/* Recipe Card Styling */
+.tutor-card:hover {
+	transform: scale(1.03);
+	transition: ease-out 0.2s all;
+}
+
+.tutor-card * {
+	text-align: center;
+}
 
 #star-rating {
 	transform: rotate(-90deg);
@@ -301,9 +322,6 @@ h1 {
 }
 
 .recipe-card-container {
-	margin-left: 3vw;
-	width: 97vw;
-	/* width: 100%; */
 	display: flex;
 	justify-content: space-around;
 	flex-direction: row;

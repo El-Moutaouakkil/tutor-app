@@ -21,18 +21,31 @@ router.get('/',async (req, res, next) => {
 
 });
 
-// @route GET api/users/tutors
-// Get Tutors
+// @route GET api/users/:id
+// Get user by id
 
-router.get('/tutors',async (req, res, next) => {
+router.get('/id/:id',async (req, res, next) => {
 	try{
-		const users = await User.find({isTutor: true}).exec();
-		res.json(users);
+		const user = await User.findOne({_id: req.params.id});
+		res.json(user);
 	} catch (error){
 		console.log(error)
 		res.status(500).send('Server Error')
 	}
 
+});
+
+// @route GET api/users/tutors
+// Get Tutors
+
+router.get('/tutors',async (req, res, next) => {
+	try{
+		const users = await User.find({userType: '2'}).exec();
+		res.json(users);
+	} catch (error){
+		console.log(error)
+		res.status(500).send('Server Error')
+	}
 });
 
 // @route POST api/users
@@ -62,13 +75,19 @@ router.post(
 		}
 
 		// Extract the actual data from the body
-		const {email, password, fname, lname, phonenum, isTutor} = req.body;
+		const {email, password, fname, lname, phonenum, userType} = req.body;
 
 		// Check and see if user already exists in the database
 		try {
 			// Mongoose checks in DB
 			let user = await User.findOne({email: email});
 
+			// If user found send a bad req back with small message
+			if (user) {
+				res.status(400).json({msg: 'User already exists'});
+			}
+
+			user = await User.findOne({phonenum: phonenum});
 			// If user found send a bad req back with small message
 			if (user) {
 				res.status(400).json({msg: 'User already exists'});
@@ -81,7 +100,7 @@ router.post(
 				fname,
 				lname,
 				phonenum,
-				isTutor
+				userType
 			});
 
 			const salt = await bcrypt.genSalt(10);

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Semicircle from '../img/img2.png';
+import Semicircle from '../img/img2.jpeg';
 import LoginFields from '../components/LoginFields';
 import Fade from 'react-bootstrap/Fade'
 

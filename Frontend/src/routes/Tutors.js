@@ -12,7 +12,6 @@ const Tutors = (props) => {
 	const { users,loading, getTutors } = userContext;
 
 	useEffect(() => {
-		// Will load all recipes into the context
 		getTutors();
 	}, []);
 
@@ -24,19 +23,20 @@ const Tutors = (props) => {
 					<input
 						type='text'
 						placeholder='Find Tutors...'
-						class='form-control'
+						class='form-control search-field'
 					/>
 			</form>
 			<br />
+			<div className='recipe-card-container'>
+
 				{users !== [] && !loading ? (
 					users.map((user) => (
-						<div className='recipe-card-container'>
 							<TutorCard tutorContent={user} />
-						</div>
 					))
 				) : (
 					<LinearProgress />
 				)}
+			</div>
 		</div>
 	);
 }
