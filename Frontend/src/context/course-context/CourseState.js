@@ -75,6 +75,22 @@ const CourseState = props => {
 		}
 	};
 
+	// Add Course
+	const addCourse = async (course) => {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		};
+		try {
+			const res = await axios.post('/api/course', course, config);
+
+			dispatch({ type: CREATE_COURSE, payload: res });
+		} catch (error) {
+			dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+		}
+	};
+
 	// Clear Errors
 	const clearErrors = () => dispatch({type: CLEAR_ERRORS});
 
@@ -90,7 +106,8 @@ const CourseState = props => {
                 deleteCourse,
                 getCourse,
 				getCourseByMajor,
-				getOneCourse
+				getOneCourse,
+				addCourse
 			}}
 		>
 			{props.children}

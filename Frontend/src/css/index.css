@@ -88,7 +88,11 @@ h3 {
 /* General style */
 
 .page-content {
-	padding: 5% 15% 0 15%;
+	padding: 5% 15% 0% 15%;
+}
+
+#home-content {
+	padding: 0% 15% 0 0% !important;
 }
 
 /* Navbar styling */
@@ -117,7 +121,7 @@ h3 {
 #img-cont {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 #logo-cont {
