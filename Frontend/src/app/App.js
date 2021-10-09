@@ -19,6 +19,7 @@ import Tutors from '../routes/Tutors'
 import NotFound from '../routes/NotFound'
 import Navbar from '../components/Navbar';
 import PrivateRoute from '../routes/PrivateRoute';
+import CreateCourse from '../routes/CreateACourse'
 
 // State and Token
 import AuthState from '../context/auth-context/AuthState';
@@ -50,6 +51,7 @@ function App() {
                             <Route exact path='/index'><Home/></Route>
                             <PrivateRoute path='/userhome' component={UserHome}/>
                             <PrivateRoute path='/student/:id' component={StudentProfile}/>
+                            <PrivateRoute path='/createcourse' component={CreateCourse}/>
                             <Route exact path='/tutor/:id' ><TutorProfile/></Route>
                             <Route exact path='/course/:id' ><CourseProfile/></Route>
                             <Route exact path='/aboutus' ><AboutUs/></Route>

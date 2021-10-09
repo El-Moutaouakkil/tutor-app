@@ -21,7 +21,7 @@ const NewCourseForm = ( ) => {
 		name: '',
 		courseid: '',
 		description: '',
-		majors: '',
+		majors: ["test", "test"],
 		tutors: ''
 	});
 
@@ -41,7 +41,7 @@ const NewCourseForm = ( ) => {
 			majors: '',
 			tutors: ''
 		});
-		history.push('/course');
+		history.push('/userhome');
 	};
 
 	const handleCourseChange = event => {

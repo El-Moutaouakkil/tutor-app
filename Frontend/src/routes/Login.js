@@ -4,10 +4,6 @@ import LoginFields from '../components/LoginFields';
 import Fade from 'react-bootstrap/Fade'
 
 export class Home extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
 
 	render() {
 		return (

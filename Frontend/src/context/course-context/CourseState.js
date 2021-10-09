@@ -29,9 +29,9 @@ const CourseState = props => {
 		dispatch({ type: DELETE_COURSE, payload: id });
 	};
 
-    const getCourse = async () => {
+    const getCourses = async () => {
 		try {
-			const res = await axios.get('/api/courses');
+			const res = await axios.get('/api/course');
 			dispatch({
 				type: GET_COURSES,
 				payload: res.data
@@ -46,7 +46,7 @@ const CourseState = props => {
 
 	const getCourseByMajor = async (id) => {
 		try {
-			const res = await axios.get('/api/courses/major' + id);
+			const res = await axios.get('/api/course/major' + id);
 			dispatch({
 				type: GET_COURSES_BY_MAJOR,
 				payload: res.data
@@ -98,13 +98,13 @@ const CourseState = props => {
 		<CourseContext.Provider
 			value={{
 				loading: state.loading,
-				user: state.user,
+				course: state.course,
 				error: state.error,
-                users: state.users,
+                courses: state.courses,
                 filtered: state.filtered,
 				clearErrors,
                 deleteCourse,
-                getCourse,
+                getCourses,
 				getCourseByMajor,
 				getOneCourse,
 				addCourse
