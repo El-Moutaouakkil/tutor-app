@@ -1,17 +1,19 @@
 import {
 	GET_ONE_COURSE,
-    GET_COURSES,
-    GET_COURSES_BY_MAJOR,
-    CREATE_COURSE,
-    DELETE_COURSE,
-    CONTACT_ERROR,
+	GET_COURSES,
+	GET_COURSES_BY_MAJOR,
+	CREATE_COURSE,
+	DELETE_COURSE,
+	TAKE_COURSE,
+	TEACH_COURSE,
+	CONTACT_ERROR,
 	CLEAR_ERRORS
 } from '../types';
 
 export default (state, action) => {
 	switch (action.type) {
 		case GET_COURSES:
-        case GET_COURSES_BY_MAJOR:
+		case GET_COURSES_BY_MAJOR:
 			return {
 				...state,
 				courses: action.payload,
@@ -22,6 +24,12 @@ export default (state, action) => {
 			return {
 				...state,
 				error: null
+			};
+		case TAKE_COURSE:
+		case TEACH_COURSE:
+			return {
+				...state,
+				loading: false
 			};
 		case GET_ONE_COURSE:
 			return {

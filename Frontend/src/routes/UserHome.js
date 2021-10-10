@@ -1,101 +1,106 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
 import AuthContext from '../context/auth-context/AuthContext';
 import LinearProgress from '@mui/material/LinearProgress';
+import { Link } from 'react-router-dom';
 
 const UserHome = (props) => {
-
 	const authContext = useContext(AuthContext);
-	const {user, loading} = authContext;
+
+	const { user, loading } = authContext;
 
 	useEffect(() => {
-		authContext.loadUser();
+		// authContext.loadUser();
 	}, []);
 
-    const renderBadge = () => {
-		if(user.userType == 3){
-			return <span className="badge bg-warning">Admin</span>;
-		}
-		else if (user.userType == 2) {
-			return <span className="badge bg-success">Tutor</span>;
-		} 
-		else {
+	const renderBadge = () => {
+		if (user.userType == 3) {
+			return <span className='badge bg-warning'>Admin</span>;
+		} else if (user.userType == 2) {
+			return <span className='badge bg-success'>Tutor</span>;
+		} else {
 			return;
 		}
-    }
+	};
 
 	const renderTutorSection = () => {
-		if(user.userType == 3){
+		if (user.userType == 3) {
 			return (
-				<div id="user-home-tutors">
+				<div id='user-home-tutors'>
 					<h2>Manage Tutors</h2>
 				</div>
-		)}
-		else if (user.userType == 2) {
-			return( 
-				<div id="user-home-tutors">
+			);
+		} else if (user.userType == 2) {
+			return (
+				<div id='user-home-tutors'>
 					<h2>Current Students</h2>
 				</div>
-		)} 
-		else {
-			return(
-				<div id="user-home-tutors">
+			);
+		} else {
+			return (
+				<div id='user-home-tutors'>
 					<h2>Current Tutors</h2>
 				</div>
-		)}
-	}
+			);
+		}
+	};
 
 	const renderCourseSection = () => {
-		if(user.userType == 3){
-			return(
-				<div id="user-home-courses">	
+		if (user.userType == 3) {
+			return (
+				<div id='user-home-courses'>
 					<div className='flex-row'>
 						<h2>Manage Courses</h2>
-						<Button variant="dark">Create</Button>
+						<Link to='/createcourse'>
+							<Button variant='dark'>Add </Button>
+						</Link>
 					</div>
 					<hr />
 				</div>
-		)}
-		else if (user.userType == 2) {
-			return(
-				<div id="user-home-courses">	
+			);
+		} else if (user.userType == 2) {
+			return (
+				<div id='user-home-courses'>
 					<div className='flex-row'>
 						<h2>Tutoring Courses</h2>
-						<Button variant="dark">Add</Button>
+						<Button variant='dark'>Add</Button>
 					</div>
 					<hr />
 				</div>
-		)} 
-		else {
-			return(
-				<div id="user-home-courses">	
+			);
+		} else {
+			return (
+				<div id='user-home-courses'>
 					<div className='flex-row'>
 						<h2>Current Courses</h2>
-						<Button variant="dark">Add</Button>
+						<Button variant='dark'>Add</Button>
 					</div>
 					<hr />
 				</div>
-		)}
-	}
+			);
+		}
+	};
 
 	return (
 		<div>
 			{user !== null && !loading ? (
 				<div>
-					<div id="user-home-topbar">
-						<h1>{user.fname} {user.lname} </h1> <h1>{renderBadge()}</h1>
+					<div id='user-home-topbar'>
+						<h1>
+							{user.fname} {user.lname}{' '}
+						</h1>{' '}
+						<h1>{renderBadge()}</h1>
 					</div>
 					<hr />
 					{renderTutorSection()}
 					<hr />
 					{renderCourseSection()}
 				</div>
-            ): (
+			) : (
 				<LinearProgress />
 			)}
 		</div>
 	);
-}
+};
 
 export default UserHome;

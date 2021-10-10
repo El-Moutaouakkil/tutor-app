@@ -1,39 +1,38 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-import AuthContext from '../context/auth-context/AuthContext';
+import CourseContext from '../context/course-context/CourseContext';
+import LinearProgress from '@mui/material/LinearProgress';
+import CourseCard from '../components/Courses/CourseCard';
 
 const Courses = (props) => {
 
-	const authContext = useContext(AuthContext);
+	const courseContext = useContext(CourseContext);
 
-	const { isAuthenticated } = authContext;
+	const { getCourses, courses, loading } = courseContext;
 
-	const text = useRef('');
-
-	// useEffect(() => {
-	// 	if (filtered === null) {
-	// 		text.current.value = '';
-	// 	}
-	// });
-
-	const onChange = (e) => {
-		console.log("yay")
-	};
+	useEffect(() => {
+		getCourses();
+	}, []);
 
 	return (
 		<div>
 			<h1 className="display-1">Courses</h1>
 			<form>
 					<input
-						ref={text}
 						type='text'
 						placeholder='Find Courses...'
-						onChange={onChange}
 						className='form-control search-field'
 					/>
 			</form>
 			<br />
+			<div className='recipe-card-container'>
+				{courses !== [] && !loading ? (
+					courses.map((course) => (
+						<CourseCard courseContent={course} />
+					))
+				) : (
+					<LinearProgress />
+				)}
+			</div>
 		</div>
 	);
 }

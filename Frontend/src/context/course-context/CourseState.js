@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, { useReducer } from 'react';
 import axios from 'axios';
 
 import CourseReducer from './CourseReducer';
@@ -6,20 +6,22 @@ import CourseContext from './CourseContext';
 
 import {
 	GET_ONE_COURSE,
-    GET_COURSES,
-    GET_COURSES_BY_MAJOR,
-    CREATE_COURSE,
-    DELETE_COURSE,
-    CONTACT_ERROR,
+	GET_COURSES,
+	GET_COURSES_BY_MAJOR,
+	CREATE_COURSE,
+	DELETE_COURSE,
+	CONTACT_ERROR,
+	TAKE_COURSE,
+	TEACH_COURSE,
 	CLEAR_ERRORS
 } from '../types';
 
-const CourseState = props => {
+const CourseState = (props) => {
 	const InitialState = {
 		loading: true,
 		courses: [],
-        course: null,
-        filtered: null,
+		course: null,
+		filtered: null,
 		error: null
 	};
 
@@ -29,9 +31,9 @@ const CourseState = props => {
 		dispatch({ type: DELETE_COURSE, payload: id });
 	};
 
-    const getCourse = async () => {
+	const getCourses = async () => {
 		try {
-			const res = await axios.get('/api/courses');
+			const res = await axios.get('/api/course');
 			dispatch({
 				type: GET_COURSES,
 				payload: res.data
@@ -46,7 +48,7 @@ const CourseState = props => {
 
 	const getCourseByMajor = async (id) => {
 		try {
-			const res = await axios.get('/api/courses/major' + id);
+			const res = await axios.get('/api/course/major' + id);
 			dispatch({
 				type: GET_COURSES_BY_MAJOR,
 				payload: res.data
@@ -58,7 +60,6 @@ const CourseState = props => {
 			});
 		}
 	};
-
 
 	const getOneCourse = async (id) => {
 		try {
@@ -75,22 +76,63 @@ const CourseState = props => {
 		}
 	};
 
+	// Add Course
+	const addCourse = async (course) => {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		};
+		try {
+			const res = await axios.post('/api/course', course, config);
+
+			dispatch({ type: CREATE_COURSE, payload: res });
+		} catch (error) {
+			dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+		}
+	};
+
+	// Add Course
+	const teachCourse = async (formData) => {
+		try {
+			const res = await axios.post('/api/course/teach', formData);
+
+			dispatch({ type: TEACH_COURSE, payload: res });
+		} catch (error) {
+			dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+		}
+	};
+
+	// Add Course
+	const takeCourse = async (formData) => {
+		try {
+			const res = await axios.post('/api/course/take', formData);
+
+			dispatch({ type: TAKE_COURSE, payload: res });
+		} catch (error) {
+			dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+		}
+	};
+
 	// Clear Errors
-	const clearErrors = () => dispatch({type: CLEAR_ERRORS});
+	const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
 	return (
 		<CourseContext.Provider
 			value={{
 				loading: state.loading,
-				user: state.user,
+				course: state.course,
 				error: state.error,
-                users: state.users,
-                filtered: state.filtered,
+				courses: state.courses,
+				filtered: state.filtered,
 				clearErrors,
-                deleteCourse,
-                getCourse,
+				deleteCourse,
+				getCourses,
 				getCourseByMajor,
-				getOneCourse
+				getOneCourse,
+				teachCourse,
+				takeCourse,
+				addCourse
 			}}
 		>
 			{props.children}

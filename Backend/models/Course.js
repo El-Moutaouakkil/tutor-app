@@ -14,12 +14,12 @@ const CourseSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	majors: {
-		type: [ {major: String} ]
-	},
-	tutors: {
-		type: [ {email: String} ]
-	}
+	majors: [{
+		type: String
+	}],
+	tutors: [{
+		type: String
+	}]
 });
 
 module.exports = mongoose.model('courses', CourseSchema);

@@ -10,7 +10,7 @@ const connectDB = require('./config/db');
 // Import Routers
 const loginRouter = require('./routes/auth.js');
 const usersRouter = require('./routes/users');
-
+const courseRouter = require('./routes/courses');
 
 const app = express();
 app.use(cors());
@@ -35,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes Will Go Below
 app.use('/api/auth', loginRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/course', courseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

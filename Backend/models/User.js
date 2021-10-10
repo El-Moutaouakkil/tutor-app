@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	userType:{
+	userType: {
 		type: Number,
 		required: true
 	},
@@ -26,11 +26,16 @@ const UserSchema = new mongoose.Schema({
 		type: Number,
 		unique: true
 	},
-	courses: {
-		type: [ {course: String, semester: String} ]
+	coursesTeaching: [
+		{
+			type: String
+		}
+	],
+	coursesTaking: {
+		type: [{ course: String, tutor: String }]
 	},
 	tutors: {
-		type: [ {email: String} ]
+		type: [{ email: String }]
 	},
 
 	date: {
