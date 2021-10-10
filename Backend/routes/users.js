@@ -33,7 +33,7 @@ router.get('/id/:id', async (req, res, next) => {
 });
 
 // @route GET api/users/tutors
-// Get Tutors
+// Get Tutors by Course
 
 router.get('/tutors/course/:id', async (req, res, next) => {
 	try {

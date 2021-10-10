@@ -1,17 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import AuthContext from '../context/auth-context/AuthContext';
+import CourseContext from '../context/course-context/CourseContext';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Link } from 'react-router-dom';
+import CourseCard from '../components/Courses/CourseCard';
 
 const UserHome = (props) => {
 	const authContext = useContext(AuthContext);
+	const courseContext = useContext(CourseContext);
 
+	const { getCourseById, courses, course, setCourses } = courseContext;
 	const { user, loading } = authContext;
 
-	useEffect(() => {
-		// authContext.loadUser();
-	}, []);
+	useEffect(() => {}, []);
 
 	const renderBadge = () => {
 		if (user.userType == 3) {

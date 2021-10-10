@@ -13,7 +13,9 @@ import {
 	CONTACT_ERROR,
 	TAKE_COURSE,
 	TEACH_COURSE,
-	CLEAR_ERRORS
+	CLEAR_ERRORS,
+	CLEAR_COURSES,
+	SET_COURSES
 } from '../types';
 
 const CourseState = (props) => {
@@ -57,6 +59,35 @@ const CourseState = (props) => {
 			dispatch({
 				type: CONTACT_ERROR,
 				payload: err
+			});
+		}
+	};
+
+	const getCourseById = async (id) => {
+		console.log(id);
+		try {
+			const res = await axios.get('/api/course/courseid/' + id);
+			dispatch({
+				type: GET_ONE_COURSE,
+				payload: res.data
+			});
+		} catch (err) {
+			dispatch({
+				type: CONTACT_ERROR,
+				payload: err
+			});
+		}
+	};
+
+	const setCourses = (data) => {
+		try {
+			dispatch({
+				type: SET_COURSES,
+				payload: data
+			});
+		} catch (err) {
+			dispatch({
+				type: CONTACT_ERROR
 			});
 		}
 	};
@@ -132,7 +163,9 @@ const CourseState = (props) => {
 				getOneCourse,
 				teachCourse,
 				takeCourse,
-				addCourse
+				addCourse,
+				getCourseById,
+				setCourses
 			}}
 		>
 			{props.children}
