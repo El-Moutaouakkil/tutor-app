@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 const Course = require('../models/Course');
-const {check, validationResult} = require('express-validator');
+const User = require('../models/User');
+const { check, validationResult } = require('express-validator');
 const auth = require('../middleware/auth');
 
 // @route GET api/course
@@ -25,7 +26,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/id/:id', async (req, res, next) => {
 	try {
-		const course = await Course.findOne({_id: req.params.id});
+		const course = await Course.findOne({ _id: req.params.id });
 		res.json(course);
 	} catch (error) {
 		console.error(error.message);
@@ -39,7 +40,7 @@ router.get('/id/:id', async (req, res, next) => {
 
 router.get('/user/:id', async (req, res, next) => {
 	try {
-		const course = await Course.find({user: req.params.id});
+		const course = await Course.find({ user: req.params.id });
 		res.json(course);
 	} catch (error) {
 		console.error(error.message);
@@ -56,18 +57,10 @@ router.post(
 	auth,
 	[
 		[
-			check('name', 'Name is required')
-				.not()
-				.isEmpty(),
-			check('courseid', 'courseid is required')
-				.not()
-				.isEmpty(),
-			check('description', 'description is required')
-				.not()
-				.isEmpty(),
-			check('majors', 'majors are required')
-				.not()
-				.isEmpty()
+			check('name', 'Name is required').not().isEmpty(),
+			check('courseid', 'courseid is required').not().isEmpty(),
+			check('description', 'description is required').not().isEmpty(),
+			check('majors', 'majors are required').not().isEmpty()
 		]
 	],
 	async (req, res, next) => {
@@ -75,26 +68,49 @@ router.post(
 		// Return the errors if invalid format.
 		console.log(errors);
 		if (!errors.isEmpty()) {
-			return res.status(400).json({errors: errors.array()});
+			return res.status(400).json({ errors: errors.array() });
 		}
-		const {
-            name,
-            courseid,
-            description,
-            majors,
-            tutors
-		} = req.body;
+		const { name, courseid, description, majors, tutors } = req.body;
 		try {
 			const newCourse = new Course({
 				name,
-                courseid,
-                description,
-                majors,
-                tutors
+				courseid,
+				description,
+				majors,
+				tutors
 			});
 
 			const course = await newCourse.save();
 			res.json(course);
+		} catch (error) {
+			console.error(error.message);
+			res.status(500).send('Server Error');
+		}
+	}
+);
+
+// @route PUT api/course/teach
+// Teach a course
+// Private
+// @ts-ignore
+router.post(
+	'/teach',
+	auth,
+	[[check('courseid', 'course is required').not().isEmpty(), check('tutorid', 'tutor is required').not().isEmpty()]],
+	async (req, res, next) => {
+		const errors = validationResult(req);
+		// Return the errors if invalid format.
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+		const { courseid, tutorid } = req.body;
+		console.log(req.body);
+		try {
+			let tutor = await User.findById(tutorid);
+			if (!tutor) return res.status(404).json({ msg: 'User not found' });
+			console.log(tutor);
+			tutor = await User.findByIdAndUpdate(tutorid, { $push: { coursesTeaching: courseid } }, { new: true });
+			res.json(tutor);
 		} catch (error) {
 			console.error(error.message);
 			res.status(500).send('Server Error');
@@ -109,16 +125,16 @@ router.post(
 router.delete('/:id', auth, async (req, res, next) => {
 	try {
 		let course = await Course.findById(req.params.id);
-		if (!course) return res.status(404).json({msg: 'Contact not found'});
+		if (!course) return res.status(404).json({ msg: 'Contact not found' });
 
 		// Make sure user owns course
 		if (course.author.toString() !== req.user.id) {
-			return res.status(401).json({msg: 'Unauthorized'});
+			return res.status(401).json({ msg: 'Unauthorized' });
 		}
 
 		course = await Course.findByIdAndRemove(req.params.id);
 
-		res.json({msg: 'Contact Removed'});
+		res.json({ msg: 'Contact Removed' });
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send('Server Error');
@@ -134,18 +150,10 @@ router.put(
 	[
 		auth,
 		[
-			check('name', 'Name is required')
-				.not()
-				.isEmpty(),
-			check('courseid', 'courseid is required')
-				.not()
-				.isEmpty(),
-			check('description', 'description is required')
-				.not()
-				.isEmpty(),
-			check('majors', 'majors are required')
-				.not()
-				.isEmpty()
+			check('name', 'Name is required').not().isEmpty(),
+			check('courseid', 'courseid is required').not().isEmpty(),
+			check('description', 'description is required').not().isEmpty(),
+			check('majors', 'majors are required').not().isEmpty()
 		]
 	],
 	async (req, res, next) => {
@@ -153,10 +161,10 @@ router.put(
 
 		// Return the errors if invalid format.
 		if (!errors.isEmpty()) {
-			return res.status(400).json({errors: errors.array()});
+			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const {name, courseid, description, preptime, difficulty} = req.body;
+		const { name, courseid, description, preptime, difficulty } = req.body;
 
 		const courseFields = {};
 		if (name) courseFields.name = name;
@@ -166,19 +174,14 @@ router.put(
 
 		try {
 			let course = await Course.findById(req.params.id);
-			if (!course)
-				return res.status(404).json({msg: 'Contact not found'});
+			if (!course) return res.status(404).json({ msg: 'Contact not found' });
 
 			// // Make sure user owns course
 			// if (course.author.toString() !== req.user.id) {
 			// 	return res.status(401).json({msg: 'Unauthorized'});
 			// }
 
-			course = await Course.findByIdAndUpdate(
-				req.params.id,
-				{$set: courseFields},
-				{new: true}
-			);
+			course = await Course.findByIdAndUpdate(req.params.id, { $set: courseFields }, { new: true });
 
 			res.json(course);
 		} catch (error) {

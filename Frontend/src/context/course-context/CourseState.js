@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, { useReducer } from 'react';
 import axios from 'axios';
 
 import CourseReducer from './CourseReducer';
@@ -6,20 +6,22 @@ import CourseContext from './CourseContext';
 
 import {
 	GET_ONE_COURSE,
-    GET_COURSES,
-    GET_COURSES_BY_MAJOR,
-    CREATE_COURSE,
-    DELETE_COURSE,
-    CONTACT_ERROR,
+	GET_COURSES,
+	GET_COURSES_BY_MAJOR,
+	CREATE_COURSE,
+	DELETE_COURSE,
+	CONTACT_ERROR,
+	TAKE_COURSE,
+	TEACH_COURSE,
 	CLEAR_ERRORS
 } from '../types';
 
-const CourseState = props => {
+const CourseState = (props) => {
 	const InitialState = {
 		loading: true,
 		courses: [],
-        course: null,
-        filtered: null,
+		course: null,
+		filtered: null,
 		error: null
 	};
 
@@ -29,7 +31,7 @@ const CourseState = props => {
 		dispatch({ type: DELETE_COURSE, payload: id });
 	};
 
-    const getCourses = async () => {
+	const getCourses = async () => {
 		try {
 			const res = await axios.get('/api/course');
 			dispatch({
@@ -58,7 +60,6 @@ const CourseState = props => {
 			});
 		}
 	};
-
 
 	const getOneCourse = async (id) => {
 		try {
@@ -91,8 +92,30 @@ const CourseState = props => {
 		}
 	};
 
+	// Add Course
+	const teachCourse = async (formData) => {
+		try {
+			const res = await axios.post('/api/course/teach', formData);
+
+			dispatch({ type: TEACH_COURSE, payload: res });
+		} catch (error) {
+			dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+		}
+	};
+
+	// Add Course
+	const takeCourse = async (formData) => {
+		try {
+			const res = await axios.post('/api/course/take', formData);
+
+			dispatch({ type: TAKE_COURSE, payload: res });
+		} catch (error) {
+			dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+		}
+	};
+
 	// Clear Errors
-	const clearErrors = () => dispatch({type: CLEAR_ERRORS});
+	const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
 	return (
 		<CourseContext.Provider
@@ -100,13 +123,15 @@ const CourseState = props => {
 				loading: state.loading,
 				course: state.course,
 				error: state.error,
-                courses: state.courses,
-                filtered: state.filtered,
+				courses: state.courses,
+				filtered: state.filtered,
 				clearErrors,
-                deleteCourse,
-                getCourses,
+				deleteCourse,
+				getCourses,
 				getCourseByMajor,
 				getOneCourse,
+				teachCourse,
+				takeCourse,
 				addCourse
 			}}
 		>
