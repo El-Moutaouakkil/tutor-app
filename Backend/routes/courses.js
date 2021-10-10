@@ -23,7 +23,7 @@ router.get('/', async (req, res, next) => {
 // Get a course
 // Public
 
-router.get('/:id', async (req, res, next) => {
+router.get('/id/:id', async (req, res, next) => {
 	try {
 		const course = await Course.findOne({_id: req.params.id});
 		res.json(course);

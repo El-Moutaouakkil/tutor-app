@@ -10,7 +10,7 @@ import Home from '../routes/Home'
 import UserHome from '../routes/UserHome'
 import StudentProfile from '../routes/StudentProfile'
 import TutorProfile from '../routes/TutorProfile'
-import CourseProfile from '../routes/CourseProfile'
+import CourseHome from '../routes/CourseHome'
 import AboutUs from '../routes/Aboutus'
 import Login from '../routes/Login'
 import SignUp from '../routes/Sign-up'
@@ -53,7 +53,7 @@ function App() {
                             <PrivateRoute path='/student/:id' component={StudentProfile}/>
                             <PrivateRoute path='/createcourse' component={CreateCourse}/>
                             <Route exact path='/tutor/:id' ><TutorProfile/></Route>
-                            <Route exact path='/course/:id' ><CourseProfile/></Route>
+                            <Route exact path='/course/:id' ><CourseHome/></Route>
                             <Route exact path='/aboutus' ><AboutUs/></Route>
                             <Route exact path='/login' ><Login/></Route>
                             <Route exact path='/signup' ><SignUp/></Route>
