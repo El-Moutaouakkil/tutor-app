@@ -63,10 +63,28 @@ h3 {
 	font-family: 'Comfortaa', cursive;
 }
 
+
 #user-home-topbar {
 	display: flex !important;
 	flex-direction: row !important;
 	justify-content: space-between !important;
+}
+
+.settings-container{
+
+}
+
+.settings-content{
+	width: 80%;
+	padding-left: 10%;
+}
+
+.settings-sidebar{
+	width: 20%;
+}
+
+.settings-sidebar Button{
+	margin-top: 2%;
 }
 
 .flex-column Button {

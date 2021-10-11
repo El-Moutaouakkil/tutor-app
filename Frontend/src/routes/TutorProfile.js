@@ -30,15 +30,6 @@ const TutorProfile = (props) => {
 		}
 	};
 
-	// const getCoursesById = () => {
-	// 	let tempCourses = [];
-	// 	user.coursesTeaching.forEach((courseid) => {
-	// 		getCourseById(courseid);
-	// 		tempCourses.push(course);
-	// 	});
-	// 	setCourses(tempCourses);
-	// };
-
 	return (
 		<div>
 			{user !== null && !loading ? (
