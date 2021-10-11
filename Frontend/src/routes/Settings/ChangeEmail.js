@@ -1,11 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import AuthContext from '../context/auth-context/AuthContext';
-import CourseContext from '../context/course-context/CourseContext';
+import AuthContext from '../../context/auth-context/AuthContext';
+import CourseContext from '../../context/course-context/CourseContext';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Link } from 'react-router-dom';
-import CourseCard from '../components/Courses/CourseCard';
-import { BsFillGearFill } from 'react-icons/bs';
 
 const UserSettings = (props) => {
 	const authContext = useContext(AuthContext);
@@ -45,9 +43,7 @@ const UserSettings = (props) => {
 							</Button>
 						</div>
 						<div className='settings-content'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis repellat natus
-							perspiciatis architecto ab repellendus, non dolores. Facere, explicabo laudantium ut
-							delectus nam veritatis pariatur maiores excepturi, consectetur atque cum!
+							<h2>Change Email</h2>
 						</div>
 					</div>
 				</div>

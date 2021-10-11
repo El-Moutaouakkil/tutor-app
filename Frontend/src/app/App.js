@@ -21,7 +21,9 @@ import Navbar from '../components/Navbar';
 import PrivateRoute from '../routes/PrivateRoute';
 import CreateCourse from '../routes/CreateACourse';
 import UserSettings from '../routes/UserSettings';
-
+import ChangeEmail from '../routes/Settings/ChangeEmail';
+import ChangePwd from '../routes/Settings/ChangePwd';
+import ChangeMajor from '../routes/Settings/ChangeMajor';
 // State and Token
 import AuthState from '../context/auth-context/AuthState';
 import AlertState from '../context/alert-context/AlertState';
@@ -57,6 +59,9 @@ function App() {
 											<PrivateRoute path='/student/:id' component={StudentProfile} />
 											<PrivateRoute path='/createcourse' component={CreateCourse} />
 											<PrivateRoute path='/settings' component={UserSettings} />
+											<PrivateRoute path='/changepwd' component={ChangePwd} />
+											<PrivateRoute path='/changeemail' component={ChangeEmail} />
+											<PrivateRoute path='/changemajor' component={ChangeMajor} />
 											<Route exact path='/tutor/:id'>
 												<TutorProfile />
 											</Route>

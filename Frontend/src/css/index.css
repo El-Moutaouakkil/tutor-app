@@ -29,6 +29,7 @@ code {
 		monospace;
 }
 
+
 a {
 	text-decoration: none !important;
 	color: black !important;
@@ -85,6 +86,10 @@ h3 {
 
 .settings-sidebar Button{
 	margin-top: 2%;
+}
+
+.settings-sidebar button {
+	width: 100% !important;
 }
 
 .flex-column Button {
