@@ -5,6 +5,7 @@ import CourseContext from '../context/course-context/CourseContext';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Link } from 'react-router-dom';
 import CourseCard from '../components/Courses/CourseCard';
+import { BsFillGearFill } from 'react-icons/bs';
 
 const UserHome = (props) => {
 	const authContext = useContext(AuthContext);
@@ -14,7 +15,7 @@ const UserHome = (props) => {
 	const { user, loading } = authContext;
 
 	useEffect(() => {
-		getCoursesByTutor(user._id);
+		if (user !== null) getCoursesByTutor(user._id);
 	}, []);
 
 	const renderBadge = () => {
@@ -67,7 +68,9 @@ const UserHome = (props) => {
 				<div id='user-home-courses'>
 					<div className='flex-row'>
 						<h2>Tutoring Courses</h2>
-						<Button variant='dark'>Add</Button>
+						<Link to='/courses'>
+							<Button variant='dark'>Add</Button>
+						</Link>
 					</div>
 					<div className='recipe-card-container'>
 						{courses !== null && !loading ? (
@@ -83,7 +86,9 @@ const UserHome = (props) => {
 				<div id='user-home-courses'>
 					<div className='flex-row'>
 						<h2>Current Courses</h2>
-						<Button variant='dark'>Add</Button>
+						<Link to='/courses'>
+							<Button variant='dark'>Add</Button>
+						</Link>
 					</div>
 					<hr />
 				</div>
@@ -96,11 +101,19 @@ const UserHome = (props) => {
 			{user !== null && !loading ? (
 				<div>
 					<div id='user-home-topbar'>
-						<h1>
-							{user.fname} {user.lname}{' '}
-						</h1>{' '}
-						<h1>{renderBadge()}</h1>
+						<div className='flex-row'>
+							<h1>
+								{user.fname} {user.lname}{' '}
+							</h1>
+						</div>
+
+						<div className='flex-row'>
+							<Link to='/settings'>
+								<Button variant='dark'>Settings</Button>
+							</Link>
+						</div>
 					</div>
+					<h1>{renderBadge()}</h1>
 					<hr />
 					{renderTutorSection()}
 					<hr />
