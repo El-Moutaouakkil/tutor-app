@@ -1,16 +1,20 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import AuthContext from '../context/auth-context/AuthContext';
+import CourseContext from '../context/course-context/CourseContext';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Link } from 'react-router-dom';
+import CourseCard from '../components/Courses/CourseCard';
 
 const UserHome = (props) => {
 	const authContext = useContext(AuthContext);
+	const courseContext = useContext(CourseContext);
 
+	const { getCoursesByTutor, courses, course, setCourses } = courseContext;
 	const { user, loading } = authContext;
 
 	useEffect(() => {
-		// authContext.loadUser();
+		getCoursesByTutor(user._id);
 	}, []);
 
 	const renderBadge = () => {
@@ -65,7 +69,13 @@ const UserHome = (props) => {
 						<h2>Tutoring Courses</h2>
 						<Button variant='dark'>Add</Button>
 					</div>
-					<hr />
+					<div className='recipe-card-container'>
+						{courses !== null && !loading ? (
+							courses.map((course) => <CourseCard courseContent={course} />)
+						) : (
+							<LinearProgress />
+						)}
+					</div>
 				</div>
 			);
 		} else {

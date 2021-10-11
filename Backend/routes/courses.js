@@ -35,6 +35,39 @@ router.get('/id/:id', async (req, res, next) => {
 });
 
 // @route GET api/course
+// Get a course by courseid
+// Public
+
+router.get('/courseid/:id', async (req, res, next) => {
+	try {
+		const course = await Course.findOne({ courseid: req.params.id });
+		res.json(course);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+// @route GET api/course
+// Get all courses per tutor
+// Public
+
+router.get('/courses/tutor/:id', async (req, res, next) => {
+	try {
+		const tutor = await User.findOne({ _id: req.params.id });
+		let courses = [];
+		for (courseid of tutor.coursesTeaching) {
+			const course = await Course.findOne({ courseid: courseid });
+			courses.push(course);
+		}
+		res.json(courses);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+// @route GET api/course
 // Get users course
 // Public
 

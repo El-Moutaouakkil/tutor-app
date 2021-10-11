@@ -79,7 +79,8 @@ const CourseHome = (props) => {
 						{users !== [] && !loading ? (
 							users.map((user) => <TutorCard tutorContent={user} />)
 						) : (
-							<LinearProgress />
+							// <LinearProgress />
+							<div />
 						)}
 					</div>
 				</div>
@@ -87,7 +88,7 @@ const CourseHome = (props) => {
 				<LinearProgress />
 			)}
 
-			{!loading && isAuthenticated ? (
+			{!loading && isAuthenticated && course !== null ? (
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header>
 						<Modal.Title>Confirmation</Modal.Title>
@@ -103,7 +104,7 @@ const CourseHome = (props) => {
 					</Modal.Footer>
 				</Modal>
 			) : (
-				<LinearProgress />
+				<div />
 			)}
 		</div>
 	);

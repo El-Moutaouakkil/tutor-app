@@ -24,3 +24,5 @@ export const CREATE_COURSE = 'CREATE_COURSE';
 export const DELETE_COURSE = 'DELETE_COURSE';
 export const TEACH_COURSE = 'TEACH_COURSE';
 export const TAKE_COURSE = 'TAKE_COURSE';
+export const CLEAR_COURSES = 'CLEAR_COURSES';
+export const SET_COURSES = 'SET_COURSES';

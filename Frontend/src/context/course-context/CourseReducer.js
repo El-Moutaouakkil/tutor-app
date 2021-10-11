@@ -7,7 +7,9 @@ import {
 	TAKE_COURSE,
 	TEACH_COURSE,
 	CONTACT_ERROR,
-	CLEAR_ERRORS
+	CLEAR_ERRORS,
+	CLEAR_COURSES,
+	SET_COURSES
 } from '../types';
 
 export default (state, action) => {
@@ -18,6 +20,11 @@ export default (state, action) => {
 				...state,
 				courses: action.payload,
 				loading: false
+			};
+		case SET_COURSES:
+			return {
+				...state,
+				courses: action.payload
 			};
 		case CLEAR_ERRORS:
 		case CONTACT_ERROR:
