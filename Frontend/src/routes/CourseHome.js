@@ -88,7 +88,7 @@ const CourseHome = (props) => {
 				<LinearProgress />
 			)}
 
-			{!loading && isAuthenticated ? (
+			{!loading && isAuthenticated && course !== null ? (
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header>
 						<Modal.Title>Confirmation</Modal.Title>

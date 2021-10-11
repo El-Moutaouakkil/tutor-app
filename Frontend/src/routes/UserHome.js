@@ -10,10 +10,12 @@ const UserHome = (props) => {
 	const authContext = useContext(AuthContext);
 	const courseContext = useContext(CourseContext);
 
-	const { getCourseById, courses, course, setCourses } = courseContext;
+	const { getCoursesByTutor, courses, course, setCourses } = courseContext;
 	const { user, loading } = authContext;
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		getCoursesByTutor(user._id);
+	}, []);
 
 	const renderBadge = () => {
 		if (user.userType == 3) {
@@ -67,7 +69,13 @@ const UserHome = (props) => {
 						<h2>Tutoring Courses</h2>
 						<Button variant='dark'>Add</Button>
 					</div>
-					<hr />
+					<div className='recipe-card-container'>
+						{courses !== null && !loading ? (
+							courses.map((course) => <CourseCard courseContent={course} />)
+						) : (
+							<LinearProgress />
+						)}
+					</div>
 				</div>
 			);
 		} else {

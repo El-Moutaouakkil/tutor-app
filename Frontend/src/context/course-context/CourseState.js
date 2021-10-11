@@ -48,6 +48,22 @@ const CourseState = (props) => {
 		}
 	};
 
+	const getCoursesByTutor = async (id) => {
+		try {
+			const res = await axios.get('/api/course/courses/tutor/' + id);
+			console.log(res.data);
+			dispatch({
+				type: GET_COURSES,
+				payload: res.data
+			});
+		} catch (err) {
+			dispatch({
+				type: CONTACT_ERROR,
+				payload: err
+			});
+		}
+	};
+
 	const getCourseByMajor = async (id) => {
 		try {
 			const res = await axios.get('/api/course/major' + id);
@@ -165,7 +181,8 @@ const CourseState = (props) => {
 				takeCourse,
 				addCourse,
 				getCourseById,
-				setCourses
+				setCourses,
+				getCoursesByTutor
 			}}
 		>
 			{props.children}

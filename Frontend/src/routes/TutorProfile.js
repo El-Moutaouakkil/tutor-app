@@ -12,18 +12,12 @@ const TutorProfile = (props) => {
 	const userContext = useContext(UserContext);
 	const courseContext = useContext(CourseContext);
 	const { user, getOneUser, loading } = userContext;
-	const { getCourseById, course, courses, setCourses } = courseContext;
-
-	// const [ recipe, setRecipe ] = useState({
-	// 	name: '',
-	// 	courseid:
-	// });
+	const { getCoursesByTutor, course, courses, setCourses } = courseContext;
 
 	const params = useParams();
 
 	useEffect(() => {
-		getOneUser(params.id);
-		// if (user != null) getCoursesById();
+		getOneUser(params.id).then(getCoursesByTutor(params.id));
 	}, []);
 
 	const renderBadge = () => {
@@ -51,7 +45,7 @@ const TutorProfile = (props) => {
 				<div>
 					<div id='user-home-topbar'>
 						<h1>
-							{user.fname} {user.lname} {renderBadge()}
+							{user.fname} {user.lname} {renderBadge()}``
 						</h1>
 						<div id='profile-contact'>
 							<div className='d-flex flex-row align-items-center'>
@@ -68,7 +62,6 @@ const TutorProfile = (props) => {
 					<div id='tutor-home-courses'>
 						<h2>Teaching Courses</h2>
 						<hr />
-						{/* <div id='course-card-holder' /> */}
 						<div className='recipe-card-container'>
 							{courses !== null && !loading ? (
 								courses.map((course) => <CourseCard courseContent={course} />)
