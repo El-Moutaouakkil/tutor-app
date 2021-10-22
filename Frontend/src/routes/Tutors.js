@@ -44,8 +44,8 @@ const Tutors = (props) => {
 
         users.forEach((user) => {
             searchResults.push({
-                fuzzyName: fuzzySearch(user.fname, search),
-                // fuzzyLName: fuzzySearch(user.lname, search),
+                fuzzyFirstName: fuzzySearch(user.fname, search),
+                fuzzyLastName: fuzzySearch(user.lname, search),
                 user,
             });
             console.log(searchResults);
@@ -85,8 +85,9 @@ const Tutors = (props) => {
                 <ul className=' recipe-card-container'>
                     {matchedTutors?.map(
                         (matchedTutor) =>
-                            matchedTutor.fuzzyName !== "" && (
-                                /* matchedTutor.fuzzyLName !== "" && */ // <li key={nanoid()}>{parse(matchedCourse)}</li>
+                            (matchedTutor.fuzzyFirstName !== "" ||
+                                matchedTutor.fuzzyLastName !== "") && (
+                                /* matchedTutor.fuzzyLastName !== "" && */ // <li key={nanoid()}>{parse(matchedCourse)}</li>
                                 <TutorCard
                                     tutorContent={matchedTutor.user}
                                     key={nanoid()}
