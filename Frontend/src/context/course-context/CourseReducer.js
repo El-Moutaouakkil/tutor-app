@@ -12,7 +12,7 @@ import {
 	SET_COURSES
 } from '../types';
 
-export default (state, action) => {
+const courseReducer = (state, action) => {
 	switch (action.type) {
 		case GET_COURSES:
 		case GET_COURSES_BY_MAJOR:
@@ -48,3 +48,4 @@ export default (state, action) => {
 			return state;
 	}
 };
+export default courseReducer;

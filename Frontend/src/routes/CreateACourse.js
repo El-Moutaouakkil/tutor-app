@@ -6,7 +6,7 @@ import CreateCourse from '../components/Courses/NewCourseForm'
 const Courses = (props) => {
 
 	const authContext = useContext(AuthContext);
-
+	
 	const {user, loading, isAuthenticated} = authContext;
 
 	useEffect(() => {
